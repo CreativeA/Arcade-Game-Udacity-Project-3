@@ -1,13 +1,32 @@
-//////// GLOBAL VARIABLES /////////
+/* GLOBAL VARIABLES
+ * We start by setting up some global variables to be used by the game.
+ * ENEMY ROW settings set the position on the canvas for each row of bugs.
+ * MAX_ settings are to stop our players walking off the canvas.
+ * PLAYER_START_ settings are to set our player's starting position.
+ * ENEMY_START_ settings are positioning the bugs to begin off the canvas.
+ */
 
-var CANVAS_WIDTH = 605,
+/* TO DO - Set difficult rating. Keep score. Collect gems.
+ */
+
+var CANVAS_WIDTH = 606,
     CANVAS_HEIGHT = 606;
 
 var TILE_HEIGHT = 80,
     TILE_WIDTH = 101;
 
+var ENEMY_ROW_1 = 60,
+    ENEMY_ROW_2 = 140,
+    ENEMY_ROW_3 = 220,
+    ENEMY_ROW_4 = 300;
+
 var SPRITE_WIDTH = 101,
     SPRITE_HEIGHT = 171;
+
+var MAX_RIGHT = CANVAS_WIDTH-SPRITE_WIDTH,
+    MAX_LEFT = 0,
+    MAX_TOP = 0,
+    MAX_BOTTOM = CANVAS_HEIGHT-SPRITE_HEIGHT-20;
 
 var PLAYER_START_X = (CANVAS_WIDTH-SPRITE_WIDTH)/2,
     PLAYER_START_Y = (CANVAS_HEIGHT-SPRITE_HEIGHT);
@@ -15,43 +34,65 @@ var PLAYER_START_X = (CANVAS_WIDTH-SPRITE_WIDTH)/2,
 var ENEMY_START_X = (-0.1*CANVAS_WIDTH);
 
 
-//////// ENEMIES ///////////
+/* SETUP GEMS
+ * There needs to be a purpose to this game so let's put some gems on there for
+ * the player to collect.
+
+/* SETUP ENEMIES
+ * We add in our bugs via an enemy method.
+ * speedBoost is to make some bugs super fast - useful if more than 1 on a row.
+ */
 
 var Enemy = function(y, speedBoost) {
     this.sprite = 'images/enemy-bug.png';
     this.width = SPRITE_WIDTH;
     this.height = SPRITE_HEIGHT;
-    this.speed = speedBoost + ((Math.random()+0.5) * 100);
     this.x = ENEMY_START_X;
     this.y = y;
+    this.speed = speedBoost + ((Math.random()+0.5) * 100);
     };
 
     Enemy.prototype.update = function(dt) {
-        // If the enemy moves off the canvas the enemy should reset to the start
+
+        /* If the bugs get to the edge of the canvas we want them to reset and
+         * start all over again.
+         */
+
         if (this.x > CANVAS_WIDTH) {
           this.x = ENEMY_START_X;
         };
+
+        /* We need to multiply any movement by the dt parameter to ensure the
+         * game runs at the same speed for all computers.
+         */
+
         this.x += this.speed * dt;
     };
 
-    // Display our enemy on the canvas
     Enemy.prototype.render = function(y) {
+
+        /* We need to draw our bugs on the canvas to be able to play the game.
+        */
+
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
-
-////////  PUT THE ENEMIES IN THE ARENA /////////////
+/* We add the bugs to the game and set parameters for (the row we want them to
+ * be on, and whether they are an extra speedBoost bug)
+ */
 
 var allEnemies = [];
 
-allEnemies[0] = new Enemy(60, 0);
-allEnemies[1] = new Enemy(140, 0);
-allEnemies[2] = new Enemy(220, 0);
-allEnemies[3] = new Enemy(60, 60);
-allEnemies[4] = new Enemy(300, 60);
+allEnemies[0] = new Enemy(ENEMY_ROW_1, 0);
+allEnemies[1] = new Enemy(ENEMY_ROW_2, 0);
+allEnemies[2] = new Enemy(ENEMY_ROW_3, 0);
+allEnemies[3] = new Enemy(ENEMY_ROW_1, 60);
+allEnemies[4] = new Enemy(ENEMY_ROW_4, 60);
 
 
-//////// PLAYERS ///////////
+/* SETUP PLAYER
+ * No game would be complete without a hero
+ */
 
 var Player = function() {
     this.sprite = 'images/char-boy.png';
@@ -61,48 +102,58 @@ var Player = function() {
     this.y = PLAYER_START_Y;
     };
 
-    Player.prototype.update = function(dt) { // Make some adjustments as it's using the top left anchor point for the sprite
-        this.boundaryRestrict();
+    Player.prototype.update = function(dt) {
+
+        /* We need to call our collisions function in order to get the player
+         * to reset when it hits a bug.
+         */
+
         this.checkCollisions();
     };
 
-    // Display our player on the game canvas
+    /* We need to draw out player on the canvas for the game to function.
+     */
+
     Player.prototype.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
-    /* Implement a switch() method to check the user input and move our player
-     * around the game canvas
+    /* We implement a switch() method to check the user input and move our player
+     * around the game canvas. We restrict the player with MAX_ so they cannot
+     * move off the canvas.
      */
+
     Player.prototype.handleInput = function(e) {
         switch(e) {
             case 'right':
-            this.x+=(TILE_HEIGHT/2.5);
+            if (this.x <= MAX_RIGHT) {
+                this.x+=(TILE_HEIGHT/2.5);
+            }
             break;
 
             case 'down':
-            this.y+=(TILE_HEIGHT/2.5);
+            if (this.y <= MAX_BOTTOM) {
+                this.y+=(TILE_HEIGHT/2.5);
+            }
             break;
 
             case 'left':
-            this.x-=(TILE_HEIGHT/2.5);
+            if (this.x > MAX_LEFT) {
+                this.x-=(TILE_HEIGHT/2.5);
+            }
             break;
 
             case 'up':
-            this.y-=(TILE_HEIGHT/2.5);
+            if (this.y > MAX_TOP) {
+                this.y-=(TILE_HEIGHT/2.5);
+            }
             break;
         }
     };
 
-    Player.prototype.boundaryRestrict = function() {
-        if (this.y < -20 ||
-                this.y > (CANVAS_HEIGHT-(this.height)) ||
-                this.x < -20 ||
-                this.x > (CANVAS_WIDTH-(this.width-15))) {
-                    this.x = PLAYER_START_X;
-                    this.y = PLAYER_START_Y;
-                };
-    };
+    /* Here is our collisions function where we can check when our player
+     * hits one of our enemies, using the rectangular method.
+     */
 
     Player.prototype.checkCollisions = function() {
         for(i = 0; i < allEnemies.length; i++) {
@@ -121,13 +172,15 @@ var Player = function() {
     };
 
 
-//////// SETUP THE PLAYERS ///////////
+/* Let's add in our player
+ */
 
-//var character =  prompt("Do you want to play as a girl or boy?");
 var player = new Player();
 
 
-//////// USER INPUT ///////////
+/* Here we are listening for our user to input the moves it wants the
+ * player to make on the canvas.
+ */
 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
@@ -136,5 +189,7 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
+
     player.handleInput(allowedKeys[e.keyCode]);
+
 });
