@@ -15,10 +15,10 @@ var CANVAS_WIDTH = 606,
 var TILE_HEIGHT = 80,
     TILE_WIDTH = 101;
 
-var ENEMY_ROW_1 = 60,
-    ENEMY_ROW_2 = 140,
-    ENEMY_ROW_3 = 220,
-    ENEMY_ROW_4 = 300;
+var ENEMY_ROW_1 = 65,
+    ENEMY_ROW_2 = 150,
+    ENEMY_ROW_3 = 230,
+    ENEMY_ROW_4 = 310;
 
 var SPRITE_WIDTH = 101,
     SPRITE_HEIGHT = 171;
@@ -75,6 +75,7 @@ var Enemy = function(y, speedBoost) {
         */
 
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+       // ctx.strokeRect(this.x, this.y, 101, 171);
     };
 
 /* We add the bugs to the game and set parameters for (the row we want them to
@@ -116,6 +117,7 @@ var Player = function() {
 
     Player.prototype.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+     //   ctx.strokeRect(this.x, this.y, 101, 171);
     };
 
     /* We implement a switch() method to check the user input and move our player
@@ -160,11 +162,12 @@ var Player = function() {
 
             var enemy = allEnemies[i];
 
-            if (this.x < enemy.x + (enemy.width/1.3) &&
-               (this.x/1.3) + this.width > enemy.x &&
-               this.y < enemy.y + (enemy.height/2.2) &&
-               (this.height/2.2) + this.y > enemy.y) {
-
+            if (
+                this.x < enemy.x + (enemy.width) &&
+                enemy.x < this.x + (this.width) &&
+                this.y < enemy.y + (enemy.height-90) && // Top of Player & Bottom Enemy
+                enemy.y < this.y + (this.height-95) // Bottom of Player & Top Enemy
+                ) {
                     this.x = PLAYER_START_X;
                     this.y = PLAYER_START_Y;
                 }
