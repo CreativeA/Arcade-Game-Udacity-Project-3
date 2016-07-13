@@ -108,12 +108,12 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/stone-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/lava.png',   // Top row is water
+                'images/stone.png',   // Row 1 of 4 of stone
+                'images/lava.png',   // Row 2 of 4 of stone
+                'images/lava.png',   // Row 3 of 4 of stone
+                'images/stone.png',   // Row 4 of 4 of grass
+                'images/stone.png'    // Row 1 of 1 of grass
             ],
             numRows = 6,
             numCols = 6,
@@ -144,6 +144,9 @@ var Engine = (function(global) {
      * on your enemy and player entities within app.js
      */
     function renderEntities() {
+        /* Add in render for gems
+         */
+        gem.render();
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
@@ -167,11 +170,19 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
-        'images/stone-block.png',
+        'images/stone.png',
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/gem-green.png',
+        'images/ninja-one.png',
+        'images/spider.png',
+        'images/robot.png',
+        'images/diamond-sword.png',
+        'images/lava.png'
+
     ]);
     Resources.onReady(init);
 

@@ -12,8 +12,8 @@
 var CANVAS_WIDTH = 606,
     CANVAS_HEIGHT = 606;
 
-var TILE_HEIGHT = 80,
-    TILE_WIDTH = 101;
+var TILE_WIDTH = 101,
+    TILE_HEIGHT = 82;
 
 var ENEMY_ROW_1 = 65,
     ENEMY_ROW_2 = 150,
@@ -23,13 +23,15 @@ var ENEMY_ROW_1 = 65,
 var SPRITE_WIDTH = 101,
     SPRITE_HEIGHT = 171;
 
-var MAX_RIGHT = CANVAS_WIDTH-SPRITE_WIDTH,
+var MAX_RIGHT = TILE_WIDTH*4,
     MAX_LEFT = 0,
     MAX_TOP = 0,
-    MAX_BOTTOM = CANVAS_HEIGHT-SPRITE_HEIGHT-20;
+    MAX_BOTTOM = TILE_HEIGHT*4;
 
-var PLAYER_START_X = (CANVAS_WIDTH-SPRITE_WIDTH)/2,
-    PLAYER_START_Y = (CANVAS_HEIGHT-SPRITE_HEIGHT);
+var PLAYER_START_X = 0,
+    PLAYER_START_Y = (TILE_HEIGHT-1)*5,
+    MOVE_VERTICAL = TILE_HEIGHT,
+    MOVE_HORIZONTAL = TILE_WIDTH;
 
 var ENEMY_START_X = (-0.1*CANVAS_WIDTH);
 
@@ -37,6 +39,48 @@ var ENEMY_START_X = (-0.1*CANVAS_WIDTH);
 /* SETUP GEMS
  * There needs to be a purpose to this game so let's put some gems on there for
  * the player to collect.
+ */
+
+var Gem = function(y) {
+    this.sprite = 'images/diamond-sword.png';
+    this.width = SPRITE_WIDTH;
+    this.height = SPRITE_HEIGHT;
+    this.x = TILE_WIDTH * (Math.floor(Math.random() * 5));
+    this.y = TILE_HEIGHT * (Math.floor(Math.random() * 5)) ;
+    };
+
+    Gem.prototype.update = function(dt) {
+
+        this.checkCollisions();
+
+        /* We need to multiply any movement by the dt parameter to ensure the
+         * game runs at the same speed for all computers.
+         */
+
+        this.x += this.speed * dt;
+
+    };
+
+    Gem.prototype.render = function() {
+
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+
+    Gem.prototype.checkCollisions = function() {
+
+        var player = player;
+
+        if (
+            gem.x === player.x &&
+            gem.y === player.x
+            ) {
+                gem.x = -SPRITE_WIDTH;
+                gem.y = 0;
+            }
+    };
+
+var gem = new Gem(505);
+
 
 /* SETUP ENEMIES
  * We add in our bugs via an enemy method.
@@ -44,7 +88,7 @@ var ENEMY_START_X = (-0.1*CANVAS_WIDTH);
  */
 
 var Enemy = function(y, speedBoost) {
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = 'images/spider.png';
     this.width = SPRITE_WIDTH;
     this.height = SPRITE_HEIGHT;
     this.x = ENEMY_START_X;
@@ -96,7 +140,7 @@ allEnemies[4] = new Enemy(ENEMY_ROW_4, 60);
  */
 
 var Player = function() {
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/ninja-one.png';
     this.width = SPRITE_WIDTH;
     this.height = SPRITE_HEIGHT;
     this.x = PLAYER_START_X;
@@ -110,6 +154,7 @@ var Player = function() {
          */
 
         this.checkCollisions();
+
     };
 
     /* We need to draw out player on the canvas for the game to function.
@@ -117,7 +162,7 @@ var Player = function() {
 
     Player.prototype.render = function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-     //   ctx.strokeRect(this.x, this.y, 101, 171);
+    //    ctx.strokeRect(this.x, this.y, 101, 171);
     };
 
     /* We implement a switch() method to check the user input and move our player
@@ -129,25 +174,25 @@ var Player = function() {
         switch(e) {
             case 'right':
             if (this.x <= MAX_RIGHT) {
-                this.x+=(TILE_HEIGHT/2.5);
+                this.x+=MOVE_HORIZONTAL;
             }
             break;
 
             case 'down':
             if (this.y <= MAX_BOTTOM) {
-                this.y+=(TILE_HEIGHT/2.5);
+                this.y+=MOVE_VERTICAL;
             }
             break;
 
             case 'left':
             if (this.x > MAX_LEFT) {
-                this.x-=(TILE_HEIGHT/2.5);
+                this.x-=MOVE_HORIZONTAL;
             }
             break;
 
             case 'up':
             if (this.y > MAX_TOP) {
-                this.y-=(TILE_HEIGHT/2.5);
+                this.y-=MOVE_VERTICAL;
             }
             break;
         }
@@ -163,10 +208,10 @@ var Player = function() {
             var enemy = allEnemies[i];
 
             if (
-                this.x < enemy.x + (enemy.width) &&
-                enemy.x < this.x + (this.width) &&
-                this.y < enemy.y + (enemy.height-90) && // Top of Player & Bottom Enemy
-                enemy.y < this.y + (this.height-95) // Bottom of Player & Top Enemy
+                this.x < enemy.x + (enemy.width-25) &&
+                enemy.x < this.x + (this.width-25) &&
+                this.y < enemy.y + (enemy.height-98) && // Top of Player & Bottom Enemy
+                enemy.y < this.y + (this.height-105) // Bottom of Player & Top Enemy
                 ) {
                     this.x = PLAYER_START_X;
                     this.y = PLAYER_START_Y;
