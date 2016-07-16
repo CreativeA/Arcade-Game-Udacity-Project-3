@@ -26,7 +26,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 606;
-    canvas.height = 606;
+    canvas.height = 660;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -108,14 +108,15 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/lava.png',   // Top row is water
-                'images/stone.png',   // Row 1 of 4 of stone
-                'images/lava.png',   // Row 2 of 4 of stone
-                'images/lava.png',   // Row 3 of 4 of stone
-                'images/stone.png',   // Row 4 of 4 of grass
-                'images/stone.png'    // Row 1 of 1 of grass
+                'images/gravel.png',   // Top row is gravel
+                'images/lava.png',   // Row 1 of 4 of lava
+                'images/lava.png',   // Row 2 of 4 of lava
+                'images/lava.png',   // Row 3 of 4 of lava
+                'images/lava.png',   // Row 4 of 4 of lava
+                'images/gravel.png',    // Row 1 of 2 of gravel
+                'images/deep-water.png'    // No-play level of water
             ],
-            numRows = 6,
+            numRows = 7,
             numCols = 6,
             row, col;
 
@@ -170,17 +171,12 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
-        'images/stone.png',
-        'images/water-block.png',
-        'images/grass-block.png',
-        'images/enemy-bug.png',
-        'images/char-boy.png',
-        'images/char-cat-girl.png',
-        'images/gem-green.png',
+        'images/deep-water.png',
         'images/ninja-one.png',
         'images/spider.png',
         'images/robot.png',
         'images/diamond-sword.png',
+        'images/gravel.png',
         'images/lava.png'
 
     ]);
