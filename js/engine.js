@@ -172,7 +172,7 @@ var Engine = (function(global) {
      */
     Resources.load([
         'images/deep-water.png',
-        'images/ninja-one.png',
+        'images/ninja-two.png',
         'images/spider.png',
         'images/robot.png',
         'images/diamond-sword.png',

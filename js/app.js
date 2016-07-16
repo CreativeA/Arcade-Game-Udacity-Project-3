@@ -178,7 +178,7 @@ allEnemies[4] = new Enemy(ENEMY_ROW_4, 60);
  */
 
 var Player = function() {
-    this.sprite = 'images/ninja-one.png';
+    this.sprite = 'images/ninja-two.png';
     this.width = SPRITE_WIDTH;
     this.height = SPRITE_HEIGHT;
     this.x = PLAYER_START_X;
@@ -275,7 +275,14 @@ var Player = function() {
 var player = new Player(); // player is a global variable
 
 
+/* Prevent browser scrolling upon key input to stop canvas conflict */
 
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 /* Here we are listening for our user to input the moves it wants the
  * player to make on the canvas.

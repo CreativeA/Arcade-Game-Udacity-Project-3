@@ -10,11 +10,12 @@ h1 {
 }
 
 canvas {
-	margin-top: -22px;
-	border: 5px solid #000;
+	margin-top: 0px;
+	border: 10px solid transparent;
+    padding: 0px;
+    -webkit-border-image: url(../images/border.png) 30% round; /* Safari 3.1-5 */
+    -o-border-image: url(../images/border.png) 30% round; /* Opera 11-12.1 */
+    border-image: url(../images/border.png) 30% round;
+    background: url("../images/paperback.jpg");
 }
 
-.main {
-	width: 1200px;
-
-}
