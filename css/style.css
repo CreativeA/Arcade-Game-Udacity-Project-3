@@ -2,20 +2,57 @@ body {
     text-align: center;
     font-family: 'Amatic SC', cursive;
     background: url("../images/paperback.jpg");
+    margin: 0;
 }
 
 h1 {
 	font-size: 40px;
-	margin-bottom: 0px;
+	margin: 10px 0 0px;
+}
+
+p {
+	font-size: 28px;
 }
 
 canvas {
 	margin-top: 0px;
-	border: 10px solid transparent;
+	border: 0px solid transparent;
     padding: 0px;
     -webkit-border-image: url(../images/border.png) 30% round; /* Safari 3.1-5 */
     -o-border-image: url(../images/border.png) 30% round; /* Opera 11-12.1 */
     border-image: url(../images/border.png) 30% round;
-    background: url("../images/paperback.jpg");
 }
 
+canvas::before {
+	background: url(../images/spider.png); /* Safari 3.1-5 */
+    z-index: 1000;
+}
+
+section {
+	min-height: 100vh;
+	padding: 20px 60px;
+	border-bottom: 5px solid #fff;
+}
+
+
+#covertop {
+	border-bottom: 2px dashed #898989;
+	width: 100%;
+	height: 60px;
+	z-index: 9999;
+	background-image: url('../images/topring.png');
+	background-position: 0 0px;
+	display: none;
+}
+
+.column {
+	display: inline-block;
+}
+
+.col-3 {
+	width: 30%;
+}
+
+.col-9 {
+	width: 60%;
+}

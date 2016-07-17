@@ -10,7 +10,7 @@
  */
 
 var CANVAS_WIDTH = 606,
-    CANVAS_HEIGHT = 688;
+    CANVAS_HEIGHT = 660;
 
 var TILE_WIDTH = 101,
     TILE_HEIGHT = 82;
