@@ -36,12 +36,14 @@ p {
 }
 
 ul {
-  margin-top: 30px;
+  margin-top: 2em;
 }
 
 li {
-	list-style: none;
-  font-size: 18px;
+	list-style: inherit;
+  font-size: 1em;
+  text-align: left;
+  padding: 1em 0 0;
 }
 
 .button {
@@ -59,10 +61,6 @@ li {
 	background: url("../images/lavabutton.png");
 	margin-top: 20px;
   text-decoration: none;
-}
-
-img {
-  width: 90%;
 }
 
 .maintitle {
@@ -106,7 +104,7 @@ img {
 
 section {
   min-height: 90vh;
-  padding: 20px 60px;
+  padding: 1.8em 5em 0.5em;
   border-top: 2px dashed #ccc;
   background: url("../images/back.png");
   position: relative;
@@ -128,8 +126,8 @@ section {
 }
 
 canvas {
-  padding: 0px;
-  margin-top: -20px;
+  padding: 0;
+  margin: -1.7em 0 4em;
 }
 
 
@@ -149,6 +147,7 @@ canvas {
 .zombie,
 .ninja {
   margin-top: 35px;
+  width: 80%;
 }
 
 #roadmap {
@@ -195,6 +194,12 @@ canvas {
   position: relative;
   z-index: 100;
 }
+
+.instruct-images {
+  height: 30%;
+  width: 30%;
+}
+
 
 /* -----------------------------------------
   Navigation Bar
