@@ -28,7 +28,7 @@ var Engine = (function(global) {
     canvas.width = 606;
     canvas.height = 660;
     // doc.body.appendChild(canvas);
-    document.getElementById("stage1").appendChild(canvas);
+    document.getElementById("game").appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -115,7 +115,7 @@ var Engine = (function(global) {
                 'images/lava.png',   // Row 3 of 4 of lava
                 'images/lava.png',   // Row 4 of 4 of lava
                 'images/gravel.png',    // Row 1 of 2 of gravel
-                'images/deep-water.png'    // No-play level of water
+                'images/diamond.png'    // No-play level of water
             ],
             numRows = 7,
             numCols = 6,
@@ -172,7 +172,7 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
-        'images/deep-water.png',
+        'images/diamond.png',
         'images/ninja-two.png',
         'images/spider.png',
         'images/robot.png',

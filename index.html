@@ -3,42 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <title>Escape from Planet Ninja</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="./js/libs/main.js"></script>
+    <script src="./js/libs/modernizr.js"></script>
+        <script src="js/libs/particles.js"></script>
+<!--    <script src="./js/libs/vivus.js"></script> -->
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Amatica+SC:700|Quicksand" rel="stylesheet">
 </head>
 <body>
     <div id="covertop"></div>
-    <section id="intro">
-        <h1>A Hand Drawn Game</h1>
-        <h3>Artwork by a boy called Charlie, aged 8</h3>
-        <img src="images/monastary.png" style="margin-top: -50px;">
-        <button>Want to Play?</button>
+
+    <a class="cd-nav-trigger cd-img-replace">Open navigation</a>
+    <div id="navbar">
+        <nav id="cd-vertical-nav" >
+            <ul>
+                <li>
+                    <a href="#mainarea" data-number="1">
+                        <span class="cd-dot"></span>
+                        <span class="cd-label">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#intro" data-number="1">
+                        <span class="cd-dot"></span>
+                        <span class="cd-label">Intro</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#stage1" data-number="1">
+                        <span class="cd-dot"></span>
+                        <span class="cd-label">Let's Play</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#roadmap" data-number="1">
+                        <span class="cd-dot"></span>
+                        <span class="cd-label">Roadmap</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <section id="mainarea" class="cd-section">
+        <h1 class="introtitle">A Hand Drawn Game</h1>
+        <h2 class="introsubtitle">Escape from Ninja Planet</h2>
+        <img src="images/monastary.png" style="width: 90%;">
+       <!-- <a href="#intro" class="button">Instructions ></a> -->
     </section>
-    <section id="intro">
-        <h1>Welcome to Escape from Planet Ninja</h1>
-        <h2>Introduction</h2>
+
+    <section id="intro" class="cd-section">
         <div class="col-3 column">
-            <img src="images/ninja-big.png">
+            <img class="ninja" src="images/ninja-big.png">
+            <img class="zombie" src="images/zombie-big.png">
         </div>
         <div class="col-9 column">
-            <p>Ninja Planet is a place full of ninjas but it has become overrun by scary monsters. There's nothing left for it but to seek to escape and build a new civilation on another planet. You are one of the heroic ninjas who is trying to escape Planet Ninja with their life intact. Right now you and your army are in the Diamond Mine but you're trapped by loads of lava spiders. You need to collect as many diamond swords as you so that you can all fight your way out, as the diamond mine is surrounded by two tribes who can only be killed by a diamond sword. The tribes are almost indestructable and are called the The Tentacle Tribe and the Undead Army. Both tribes look alike but they actually have very different personalities and are mortal enemies.</p>
-            <p>Right now the Undead Army are in Zombie Town and you'll have to fight them later in the game if you want to successfully escape Planet Ninja, but more about that later. For now you need to get collecting those diamond swords before those lava spiders start completely overrunning this place...</p>
+            <h1 class="introtitle">Greetings</h1>
+            <h2 class="introsubtitle">from Mission Control</h2>
+            <p>
+                Ninja Planet is a place full of ninjas but it has become overrun by scary monsters. There's nothing left for it but to seek to escape and build a new civilation on another planet. You are one of the heroic ninjas who is trying to escape Planet Ninja with their life intact. Right now you and your army are in the Diamond Mine but you're trapped by loads of lava spiders. You need to collect as many diamond swords as you so that you can all fight your way out, as the diamond mine is surrounded by two tribes who can only be killed by a diamond sword. The tribes are almost indestructable and are called the The Tentacle Tribe and the Undead Army. Both tribes look alike but they actually have very different personalities and are mortal enemies.
+            </p>
+            <p>
+                Right now the Undead Army are in Zombie Town and you'll have to fight them later in the game if you want to successfully escape Planet Ninja, but more about that later. For now you need to get collecting those diamond swords before those lava spiders start completely overrunning this place...
+            </p>
+            <!--<a href="#stage1" class="button">Begin ></a>-->
         </div>
     </section>
-    <section id="instruct">
-        <h1>Stage 1 - The Diamond Mines</h1>
-        <h2>Instructions</h2>
-        <p>You have chosen a ninja..</p>
+
+    <section id="stage1" class="cd-section">
+        <h1 class=introtitle>Our epic adventure begins...</h1>
+        <h2 class=introsubtitle>Level 1: Escape the Diamond Mine</h2>
+        <div id="game" class="col-9 column">
+        </div>
+        <div class="col-3 column">
+            <h2>Collect as many diamond swords as you can before you get bit by a deadly lava spider.</h2>
+        </div>
     </section>
-    <section id="stage1">
-        <h1>Let's Play</h1>
+
+    <section id="roadmap" class="cd-section">
+        <h1 class="introtitle">The Ideas Factory </h1>
+        <h2 class="introsubtitle">(aka Our Development Roadmap)</h2>
+         <div class="col-3 column">
+            <li>Level ups! Let's create different targets for collecting swords on Level 1</li>
+            <li>We need more levels - allow the user to progress past Level 1</li>
+        </div>
+        <div class="col-3 column">
+            <object type="image/svg+xml" data="images/lightbulb.svg" class="bulb" id="bulb">
+                <img src="images/lightbulb.png"> <!--fallback for older browsers. SVG optimised at http://petercollingridge.appspot.com/svg-optimiser. https://github.com/svg/svgo-->
+            </object>
+        </div>
+        <div class="col-3 column">
+            <li>Add lives - let's give the user 3 hearts for each level</li>
+        </div>
+        <p class="speech"><a href="#room" >It's packaway time now...</a></p>
     </section>
-    <section id="roadmap">
-        <h1>Development Roadmap</h1>
+
+    <section id="room" class="cd-section">
+        <!-- particles.js container -->
+        <div id="particles-js"> </div>
+        <div id="room-content"> </div>
+        <h1 class="introtitle">Let's draw with code.</h1>
+        <h2 class="introsubtitle">The only limit is the imagination.</h2>
+        <!--<a href="#covertop" class="button mainbutton">Shall we begin?</a>-->
+        <p class="speech"><a href="#covertop" >Go on, get started!</a></p>
     </section>
+
+    <section class="mini">
+            <h1> Life is a blank canvas. We can create.</h1>
+            <h3 class="credits">Artwork by a boy called Charlie | Website by Anna as part of Udacity Nanodegree</h3>
+    </section>
+
+    <script> // Autoload page at Room section
+        if (!document.location.hash){
+        document.location.hash = 'room';
+        }
+    </script>
+
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
+
+<!--    <script>
+  var hi = new Vivus('bulb', {type: 'oneByOne'},
+                function () {
+                    if (window.console) {
+                        console.log('Animation finished. [log triggered from callback]');
+                    }
+                });
+</script> -->
 
 </body>
 </html>
