@@ -17,53 +17,40 @@
 --------------------------------------------- */
 
 @keyframes hover {
-  0% {
-    transform: translateY(0px);
-  }
-  34% {
-    transform: translateY(20px);
-  }
+	0% {transform: translateY(0px);}
+	34% {transform: translateY(20px);}
 }
 
-@keyframes snap {
-  0% {
-    transform: translateX(-50px);
-  }
-  34% {
-    transform: translateX(0px);
-  }
+@keyframes spin {
+	80% {transform:scale(0.9) rotate(0deg);}
+	0% {transform:scale(1) rotate(0deg);}
 }
 
 @keyframes walk {
-  0% {
-    transform: translateX(0px);
-  }
-  10% {
-    transform: translateX(-30px);
-  }
-  30% {
-    transform: translateX(-40px);
-  }
-    60% {
-    transform: translateX(-20px);
-  }
-
-    100% {
-    transform: translateX(0px);
-  }
+  	0% {transform: translateX(0px);}
+  	10% {transform: translateX(-30px);}
+  	30% {transform: translateX(-40px);}
+  	60% {transform: translateX(-20px);}
+	100% {transform: translateX(0px);}
 }
 
+
+
 .st0 {
-  fill:#FFFFFF;
+	fill:#FFFFFF;
 }
 
 .bird-right,
 .bird-left {
-  animation: hover 10s 1s ease infinite;
+	animation: hover 10s 1s ease infinite;
+}
+
+.arms-monster-left {
+	animation: spin 4s ease infinite;
 }
 
 .man-sticks-center {
-  animation: walk 1s 1s ease infinite;
+	animation: walk 1s 1s ease infinite;
 }
 
 </style>
