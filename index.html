@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <title>Escape from Planet Ninja</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="./js/libs/main.js"></script>
-    <script src="./js/libs/modernizr.js"></script>
-        <script src="js/libs/particles.js"></script>
-<!--    <script src="./js/libs/vivus.js"></script> -->
+    <script src="js/libs/main.js"></script>
+    <script src="js/libs/modernizr.js"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Amatica+SC:700|Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatica+SC:700|Slabo+27px" rel="stylesheet">
 </head>
 <body>
     <div id="covertop"></div>
-
-    <a class="cd-nav-trigger cd-img-replace">Open navigation</a>
     <div id="navbar">
         <nav id="cd-vertical-nav" >
             <ul>
@@ -45,13 +41,15 @@
                 </li>
             </ul>
         </nav>
+        <p class="vertical-text-bottom"><< Hey, I Rule! Go on, push my buttons!</p>
     </div>
 
     <section id="mainarea" class="cd-section">
         <h1 class="introtitle">A Hand Drawn Game</h1>
         <h2 class="introsubtitle">Escape from Ninja Planet</h2>
-        <img src="images/monastary.png" style="width: 90%;">
-       <!-- <a href="#intro" class="button">Instructions ></a> -->
+        <object type="image/svg+xml" data="images/mainimage.svg" id="mainsvg">
+            <img src="images/monastary.png"> <!--keyframe animations are inline within SVG file -->
+        </object>
     </section>
 
     <section id="intro" class="cd-section">
@@ -68,34 +66,30 @@
             <p>
                 Right now the Undead Army are in Zombie Town and you'll have to fight them later in the game if you want to successfully escape Planet Ninja, but more about that later. For now you need to get collecting those diamond swords before those lava spiders start completely overrunning this place...
             </p>
-            <!--<a href="#stage1" class="button">Begin ></a>-->
         </div>
     </section>
 
     <section id="stage1" class="cd-section">
-        <h1 class=introtitle>Our epic adventure begins...</h1>
-        <h2 class=introsubtitle>Level 1: Escape the Diamond Mine</h2>
+        <h1 class="introtitle">Our epic adventure begins...</h1>
+        <h2 class="introsubtitle">Level 1: Escape the Diamond Mine</h2>
         <div id="game" class="col-9 column">
         </div>
         <div class="col-3 column">
-            <ul>
-                <li>Hello Green Ninja! The fate of our species rests in your hands. You are wearing a special heat resistant suit to allow you to navigate the lava.</li>
-                <li><img class="instruct-images" src="images/sword-big.png"></li>
-                <li>But for us to stand a chance of winning this war you must collect as many diamond swords as you can...</li>
-                <li><img class="instruct-images" src="images/spider-big.png"></li>
-                <li>...but make sure you don't get bit by one of the deadly lava spiders!</li>
-                <li><-- We'll be keeping an eye on your progress, so go Ninja, go! We all believe in you.</li>
-            </ul>
+            <p>Hello Green Ninja! The fate of our species rests in your hands. You are wearing a special heat resistant suit to allow you to navigate the lava.</p>
+            <img class="instruct-images" src="images/sword-big.png">
+            <p>But for us to stand a chance of winning this war you must collect as many diamond swords as you can...</p>
+             <img class="instruct-images" src="images/spider-big.png">
+            <p>...but make sure you don't get bit by one of the deadly lava spiders!</br>We'll be keeping an eye on your progress Ninja. So get going - we all believe in you!</p>
         </div>
     </section>
 
     <section id="roadmap" class="cd-section">
         <h1 class="introtitle">The Ideas Factory </h1>
         <h2 class="introsubtitle">(aka Our Development Roadmap)</h2>
-         <div class="col-3 column">
+        <div class="col-3 column">
             <ul>
-                <li>Level ups! Let's create different targets for collecting swords on Level 1</li>
-                <li>We need more levels - allow the user to progress past Level 1</li>
+                <li class="one">Level ups! Let's create different targets for collecting swords on Level 1</li>
+                <li class="two">We need more levels - allow the user to progress past Level 1</li>
             </ul>
         </div>
         <div class="col-3 column">
@@ -105,25 +99,29 @@
         </div>
         <div class="col-3 column">
             <ul>
-                <li>Add lives - let's give the user 3 hearts for each level</li>
+                <li class="three">Add lives - let's give the user 3 hearts for each level</li>
             </ul>
         </div>
-        <p class="speech"><a href="#room" >It's packaway time now...</a></p>
+        <!--<p class="speech">
+            <a href="#room" >Thanks for playing! Come back soon :)</a>
+        </p>-->
     </section>
 
     <section id="room" class="cd-section">
-        <!-- particles.js container -->
         <div id="particles-js"> </div>
         <div id="room-content"> </div>
-        <h1 class="introtitle">Let's draw with code.</h1>
+        <h1 class="introtitle">Let's draw with <span>code</span>.</h1>
         <h2 class="introsubtitle">The only limit is the imagination.</h2>
-        <!--<a href="#covertop" class="button mainbutton">Shall we begin?</a>-->
-        <p class="speech"><a href="#covertop" >Go on, get started!</a></p>
+        <p class="speech">
+            <a href="#covertop">Abracadabra!</br>Close your eyes and click here...</a>
+        </p>
     </section>
 
     <section class="mini">
             <h1> Life is a blank canvas. We can create.</h1>
-            <h3 class="credits">Artwork by a boy called Charlie - Brought to life by Anna - Part of Udacity Nanodegree</h3>
+            <h3 class="credits">
+                Artwork by a boy called Charlie - Brought to life by Anna - Part of Udacity Nanodegree
+            </h3>
     </section>
 
     <script> // Autoload page at Room section
@@ -131,19 +129,11 @@
         document.location.hash = 'room';
         }
     </script>
-
+    <script src="js/libs/particles.js"></script>
+    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
-
-<!--    <script>
-  var hi = new Vivus('bulb', {type: 'oneByOne'},
-                function () {
-                    if (window.console) {
-                        console.log('Animation finished. [log triggered from callback]');
-                    }
-                });
-</script> -->
 
 </body>
 </html>

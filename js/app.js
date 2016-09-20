@@ -1,14 +1,3 @@
-/* GLOBAL VARIABLES
- * We start by setting up some global variables to be used by the game.
- * ENEMY ROW settings set the position on the canvas for each row of bugs.
- * MAX_ settings are to stop our players walking off the canvas.
- * PLAYER_START_ settings are to set our player's starting position.
- * ENEMY_START_ settings are positioning the bugs to begin off the canvas.
- */
-
-/* TO DO - Keep score. Collect gems.
- */
-
 var CANVAS_WIDTH = 606,
     CANVAS_HEIGHT = 660;
 
@@ -40,14 +29,11 @@ var SCORE = 0,
 
 //allEnemies.forEach(checkCollisions2(this,enemy));
 
-
 /* SETUP HELPER CLASS
  * We will use this area to setup general methods that are not unique to a
  * specific object and can be used throughout the game by all objects.
 
-
 var Helper = function() {};  */
-
 
 /* SETUP SCORE KEEPER */
 
@@ -76,7 +62,6 @@ var checkCollisions2 = function(player, object) {
 /* SETUP GEMS
  * There needs to be a purpose to this game so let's put some gems on there for
  * the player to collect.
- * TO DO - get gem collision working
  */
 
 var Gem = function() {
@@ -172,8 +157,6 @@ allEnemies[2] = new Enemy(ENEMY_ROW_3, 0);
 allEnemies[3] = new Enemy(ENEMY_ROW_1, 60);
 allEnemies[4] = new Enemy(ENEMY_ROW_4, 60);
 
-
-
 /* SETUP PLAYER
  * No game would be complete without a hero
  */
@@ -259,7 +242,6 @@ var Player = function() {
                 SCORE++;
             }
 
-
         for(i = 0; i < allEnemies.length; i++) {
 
             var enemy = allEnemies[i];
@@ -269,12 +251,9 @@ var Player = function() {
 
     };
 
-
-/* Let's add in our player
- */
+/* Let's add in our player */
 
 var player = new Player(); // player is a global variable
-
 
 /* Prevent browser scrolling upon key input to stop canvas conflict */
 
@@ -325,7 +304,7 @@ function smoothScroll() {
 
 smoothScroll()
 
-
+/* Background Particles */
 
 particlesJS('particles-js',
 
@@ -338,24 +317,29 @@ particlesJS('particles-js',
           "value_area": 800
         }
       },
+
       "color": {
         "value": "#7BC4C8"
       },
+
       "shape": {
         "type": "circle",
         "stroke": {
           "width": 0,
           "color": "#000000"
         },
+
         "polygon": {
           "nb_sides": 5
         },
+
         "image": {
           "src": "img/github.svg",
           "width": 100,
           "height": 100
         }
       },
+
       "opacity": {
         "value": 0.5,
         "random": false,
@@ -366,6 +350,7 @@ particlesJS('particles-js',
           "sync": false
         }
       },
+
       "size": {
         "value": 5,
         "random": true,
@@ -376,6 +361,7 @@ particlesJS('particles-js',
           "sync": false
         }
       },
+
       "line_linked": {
         "enable": true,
         "distance": 150,
@@ -383,6 +369,7 @@ particlesJS('particles-js',
         "opacity": 0.4,
         "width": 1
       },
+
       "move": {
         "enable": true,
         "speed": 6,
@@ -397,6 +384,7 @@ particlesJS('particles-js',
         }
       }
     },
+
     "interactivity": {
       "detect_on": "canvas",
       "events": {
@@ -404,12 +392,15 @@ particlesJS('particles-js',
           "enable": true,
           "mode": "repulse"
         },
+
         "onclick": {
           "enable": true,
           "mode": "push"
         },
+
         "resize": true
       },
+
       "modes": {
         "grab": {
           "distance": 400,
@@ -417,6 +408,7 @@ particlesJS('particles-js',
             "opacity": 1
           }
         },
+
         "bubble": {
           "distance": 400,
           "size": 40,
@@ -424,17 +416,21 @@ particlesJS('particles-js',
           "opacity": 8,
           "speed": 3
         },
+
         "repulse": {
           "distance": 200
         },
+
         "push": {
           "particles_nb": 4
         },
+
         "remove": {
           "particles_nb": 2
         }
       }
     },
+
     "retina_detect": true,
     "config_demo": {
       "hide_card": false,
@@ -447,3 +443,10 @@ particlesJS('particles-js',
   }
 
 );
+
+/* Scroll Reveal */
+
+window.sr = ScrollReveal();
+sr.reveal('#intro');
+sr.reveal('#stage1');
+sr.reveal('#roadmap');
